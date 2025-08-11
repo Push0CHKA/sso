@@ -1,12 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"log/slog"
 	"sso/internal/config"
+	"sso/internal/lib/logger"
 )
 
 func main() {
 	cfg := config.MustLoad()
 
-	fmt.Println(cfg)
+	log := logger.SetupLogger(cfg.Env)
+
+	log.Info("starting application", slog.String("env", cfg.Env))
 }
